@@ -74,18 +74,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <table>
             <tr>
               
-                <th class="hidden-id">ID</th>
+                <th hidden>ID</th>
                 <th>Nombre</th>
                 <th>Cantidad</th>
+                <th>Acciones</th>
             </tr>
 
             <?php foreach ($cosasmodel as $cosa): ?>
-                <tr>
-                    <!-- Agrega una clase para ocultar la columna de ID -->
-                    <td class="hidden-id"><?php echo $cosa->id; ?></td>
-                    <td><?php echo $cosa->nombre; ?></td>
-                    <td><?php echo $cosa->cantidad; ?></td>
-                </tr>
+                <?php if($cosa->borrado_logico != 1):?>
+                    <tr>
+                        <!-- Agrega una clase para ocultar la columna de ID -->
+                        <td class="hidden-id"><?php echo $cosa->id; ?></td>
+                        <td><?php echo $cosa->nombre; ?></td>
+                        <td><?php echo $cosa->cantidad; ?></td>
+                        <td>
+                        <a href="<?= base_url('Cosas_controller/actualizar_cantidad') . "?id=$cosa->id" ?>">Actualizar</a>
+                        <a href="<?= base_url('Cosas_controller/borrar') . "?id=$cosa->id" ?>">Borrar</a>
+                        </td>
+                    </tr>
+                <?php endif;?>
             <?php endforeach; ?>
         </table>
     </div>

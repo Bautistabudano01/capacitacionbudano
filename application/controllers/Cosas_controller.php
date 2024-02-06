@@ -14,9 +14,6 @@ class Cosas_controller extends CI_Controller{
 
     }
     
-    public function listado(){
-
-    }
 
     public function guardar(){
         
@@ -31,6 +28,21 @@ class Cosas_controller extends CI_Controller{
     
 
     public function borrar(){
-        
+        $id = $this->input->get("id");
+
+        $data = array('borrado_logico' => 1);
+        $this->Cosas_model->update($id, $data);
+
+        redirect(base_url());
+
     }
+
+    public function actualizar_cantidad() {
+        $id = $this->input->get("id");
+        $data['cosa'] = $this->Cosas_model->find($id);
+        // print_r($data);
+        return $this->load->view('actualizar_cantidad', $data);
+    }
+    
+    
 }

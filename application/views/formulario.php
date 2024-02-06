@@ -3,7 +3,7 @@
     <input type="text" name="nombre" required>
 
     <label for="cantidad">Cantidad:</label>
-    <input type="number" name="cantidad" required>
+    <input type="number" id="cantidad" min=0 name="cantidad" required>
 
     <button type="submit">Guardar</button>
 </form>
